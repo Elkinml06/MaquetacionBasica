@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,18 +30,18 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ProductScreen1()
+
         }
     }
 }
 // Primer ejercicio tarea
 @Preview(showSystemUi = true)
 @Composable
-fun ProductScreen1() {
+fun Screen1() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(16.dp,36.dp)
     ) {
         ProductCard()
         Spacer(modifier = Modifier.height(16.dp))
@@ -187,4 +188,48 @@ fun ProductButtons() {
             )
         }
     }
+}
+
+// Segundo ejercicio tarea
+@Preview(showSystemUi = true)
+@Composable
+fun Screen2() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize(),
+    ) {
+        Row() {
+            Image(
+                painter = painterResource(id = R.drawable.bg2),
+                contentDescription = null,
+                modifier = Modifier
+                    .padding(top = 30.dp)
+            )
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = "Jetpack Compose Tutorial",
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Medium,
+            modifier = Modifier.padding(horizontal = 16.dp)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = "Jetpack Compose is a modern toolkit for building native Android UI. Compose simplifies and accelerates UI development on Android with less code, powerful tools, nd intuitive Kotlin APIS.",
+            textAlign = TextAlign.Justify,
+            modifier = Modifier.padding(horizontal = 16.dp)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = "In this tutorial, you build a simple Ul component with declarative functions. You call Compose functions to say what elements you want and the Compose compiler does the rest Compose is built around Composable functions. These functions let you define your app's UI programmatically because they let you describe how it should look and provide data dependencies, rather than focus on the process of the Ul's construction, such as initializing an element and then attaching it to a parent. To create a Composable function, you add the @Composable annotation to the function name.",
+            textAlign = TextAlign.Justify,
+            modifier = Modifier.padding(horizontal = 16.dp)
+        )
+    }
+
 }
