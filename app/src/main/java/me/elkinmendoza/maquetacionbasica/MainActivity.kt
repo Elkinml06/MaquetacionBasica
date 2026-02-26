@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,6 +25,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextAlign.Companion.Justify
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -232,4 +237,338 @@ fun Screen2() {
         )
     }
 
+}
+
+// Tercer ejercicio tarea
+@Preview(showSystemUi = true)
+@Composable
+fun Screen3() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp, 36.dp)
+    ) {
+
+        ProfileCard()
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        ProfileButtons()
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        InterestsSection()
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        RecentProjectsSection()
+    }
+}
+@Composable
+fun ProfileCard() {
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            ProfileImage()
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            ProfileTexts()
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            ProfileStats()
+
+    }
+}
+@Composable
+fun ProfileImage() {
+    Image(
+        painter = painterResource(id = R.drawable.img_3),
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+        modifier = Modifier
+            .size(110.dp)
+            .clip(CircleShape)
+    )
+}
+@Composable
+fun ProfileTexts() {
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Text(
+            text = "Juan Pérez",
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Bold
+        )
+
+        Text(
+            text = "Desarrollador Android apasionado por la tecnología y el diseño.",
+            textAlign = TextAlign.Center,
+            color = Color.Gray
+        )
+    }
+}
+@Composable
+fun ProfileStats() {
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 16.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "150",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                text = "Posts",
+                fontSize = 14.sp,
+                color = Color.Gray
+            )
+        }
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "2.3K",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                text = "Seguidores",
+                fontSize = 14.sp,
+                color = Color.Gray
+            )
+        }
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "980",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                text = "Likes",
+                fontSize = 14.sp,
+                color = Color.Gray
+            )
+        }
+    }
+}
+@Composable
+fun ProfileButtons() {
+
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+
+        // Seguir
+        Row(
+            modifier = Modifier
+                .weight(1f)
+                .background(Color(0xFF6A1B9A), RoundedCornerShape(50))
+                .padding(vertical = 12.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "Seguir",
+                color = Color.White,
+                fontWeight = FontWeight.Bold
+            )
+        }
+
+        // Mensaje
+        Row(
+            modifier = Modifier
+                .weight(1f)
+                .border(1.dp, Color.Gray, RoundedCornerShape(50))
+                .padding(vertical = 12.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "Mensaje",
+                fontWeight = FontWeight.Bold
+            )
+        }
+    }
+}
+@Composable
+fun InterestsSection() {
+
+    Column(
+        modifier = Modifier.padding(0.dp,16.dp)
+    ) {
+
+        Text(
+            text = "Intereses",
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        // Primera fila
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+
+            Text(
+                text = "Ciclismo",
+                modifier = Modifier
+                    .background(
+                        color = Color(0xFFD9D9D9),
+                        shape = RoundedCornerShape(50)
+                    )
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+            )
+
+            Text(
+                text = "Programación",
+                modifier = Modifier
+                    .background(
+                        color = Color(0xFFD9D9D9),
+                        shape = RoundedCornerShape(50)
+                    )
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+            )
+
+            Text(
+                text = "UI/UX",
+                modifier = Modifier
+                    .background(
+                        color = Color(0xFFD9D9D9),
+                        shape = RoundedCornerShape(50)
+                    )
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        // Segunda fila
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+
+            Text(
+                text = "Música",
+                modifier = Modifier
+                    .background(
+                        color = Color(0xFFD9D9D9),
+                        shape = RoundedCornerShape(50)
+                    )
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+            )
+
+            Text(
+                text = "Viajes",
+                modifier = Modifier
+                    .background(
+                        color = Color(0xFFD9D9D9),
+                        shape = RoundedCornerShape(50)
+                    )
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+            )
+
+            Text(
+                text = "Gaming",
+                modifier = Modifier
+                    .background(
+                        color = Color(0xFFD9D9D9),
+                        shape = RoundedCornerShape(50)
+                    )
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+            )
+        }
+    }
+}
+@Composable
+fun RecentProjectsSection() {
+
+    Column {
+
+        Text(
+            text = "Proyectos Recientes",
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color(0xFFE0E0E0))
+        ) {
+
+            Image(
+                painter = painterResource(id = R.drawable.img_3),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .width(120.dp)
+                    .height(120.dp)
+            )
+
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .weight(1f)
+            ) {
+
+                Text(
+                    text = "App de Ciclismo",
+                    fontWeight = FontWeight.Bold
+                )
+
+                Spacer(modifier = Modifier.height(4.dp))
+
+                Text(
+                    text = "Aplicación para rastrear rutas de ciclismo con mapas y estadísticas.",
+                    fontSize = 12.sp,
+                    textAlign = Justify
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.End)
+                        .background(
+                            color = Color(0xFF6A1B9A),
+                            shape = RoundedCornerShape(50)
+                        )
+                        .padding(horizontal = 16.dp, vertical = 6.dp)
+                ) {
+                    Text(
+                        text = "Ver más",
+                        color = Color.White,
+                        fontSize = 12.sp,
+                        )
+                }
+            }
+        }
+    }
 }
